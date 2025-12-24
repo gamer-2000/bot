@@ -9,7 +9,7 @@ app.listen(10000, () => console.log('Web server running on port 10000'));
 // 2. Bot Configuration
 const botPassword = "YOUR_BOT_PASSWORD_HERE"; 
 const botArgs = {
-  host: 'YOUR_SERVER_IP', 
+  host: 'mcinfernoooo.falixsrv.me', 
   port: 25565,           
   username: 'AFK_Bot',   
   version: false        // Auto-detects server version
