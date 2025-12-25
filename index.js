@@ -48,12 +48,19 @@ function createBot() {
   });
 
   // 5. Auto-Reconnect if kicked/server restarts
-  bot.on('end', () => {
-    console.log('Disconnected. Reconnecting in 10 seconds...');
-    setTimeout(createBot, 10000);
-  });
+  bot.on('end', (reason) => {
+  console.log(`Disconnected: ${reason}. Restarting in 15 seconds...`);
+  
+  // Instead of just trying to reconnect, we kill the process.
+  // Render/Cron-job will see the app is "down" and restart it for you.
+  setTimeout(() => {
+    process.exit(); 
+  }, 15000);
+});
 
-  bot.on('error', (err) => console.log('Connection Error:', err));
-}
+bot.on('error', (err) => {
+  console.log('Error encountered, killing process to force restart...');
+  process.exit();
+});
 
 createBot();
